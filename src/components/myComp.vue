@@ -9,7 +9,6 @@ const connections = useHandleConnections({
         console.log("onDisConnect", params);
     },
 });
-console.log(connections);
 </script>
 
 <template>
