@@ -1,19 +1,20 @@
 <script setup>
-import { Handle, useHandleConnections, Position } from '@vue-flow/core';
-const connections = useHandleConnections({
+import { useNode, Handle, Position, useHandleConnections } from '@vue-flow/core';
+const { node } = useNode();
+useHandleConnections({
     type: "source",
     onConnect: (params) => {
         console.log("onConnect", params);
     },
-    onDisConnect: (params) => {
-        console.log("onDisConnect", params);
+    onDisconnect: (params) => {
+        console.log("onDisconnect", params);
     },
 });
 </script>
 
 <template>
     <div>
-        <span>A node</span>
+        <span>{{ node.id }}</span>
         <Handle type="source" :position="Position.Right" />
         <Handle type="target" :position="Position.Left" />
     </div>
