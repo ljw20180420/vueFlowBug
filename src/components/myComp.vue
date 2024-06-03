@@ -1,6 +1,7 @@
 <script setup>
-import { useNode, Handle, Position, useHandleConnections } from '@vue-flow/core';
+import { useNode, Handle, Position, useHandleConnections, useVueFlow } from '@vue-flow/core';
 const { node } = useNode();
+const { addEdges } = useVueFlow();
 useHandleConnections({
     type: "source",
     onConnect: (params) => {

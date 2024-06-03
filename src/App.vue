@@ -14,7 +14,7 @@ const elements = ref([
   { id: 'node 1', type: 'myCompNode', position: { x: 50, y: 50 }},
   { id: 'node 2', type: 'myCompNode', position: { x: 200, y: 50 }},
 
-  { id: 'e1', source: 'node 1', target: 'node 2' },
+  // { id: 'e1', source: 'node 1', target: 'node 2' },
 ])
 
 function onConnect(params) {
