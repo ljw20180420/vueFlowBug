@@ -3,9 +3,11 @@ import { markRaw } from 'vue'
 import { VueFlow, useVueFlow } from '@vue-flow/core'
 import { ref } from 'vue';
 import myComp from './components/myComp.vue';
+import BraksComp from './components/BraksComp.vue';
 
 const nodeTypes = {
   myCompNode: markRaw(myComp),
+  BraksCompNode: markRaw(BraksComp),
 };
 
 const { addEdges } = useVueFlow();
@@ -14,12 +16,12 @@ const elements = ref([
   { id: 'node 1', type: 'myCompNode', position: { x: 50, y: 50 }},
   { id: 'node 2', type: 'myCompNode', position: { x: 200, y: 50 }},
 
-  { id: 'e1', source: 'node 1', target: 'node 2' },
+  { id: 'e1', source: 'node 1', target: 'node 2', sourceHandle: 's', targetHandle: 't' },
 ])
 
 function onConnect(params) {
   addEdges(params);
-  console.log("onConnect", params);
+  // console.log("onConnect", params);
 }
 </script>
 

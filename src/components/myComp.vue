@@ -2,9 +2,9 @@
 import { useNode, Handle, Position, useHandleConnections, useVueFlow } from '@vue-flow/core';
 const { node } = useNode();
 const { addEdges } = useVueFlow();
-useHandleConnections({
+const conns = useHandleConnections({
     type: 'source',
-    id: 'source',
+    id: 's',
     onConnect: (params) => {
         console.log("onConnect", params);
     },
@@ -17,7 +17,7 @@ useHandleConnections({
 <template>
     <div>
         <span>{{ node.id }}</span>
-        <Handle id="source" type="source" :position="Position.Right" />
-        <Handle id="target" type="target" :position="Position.Left" />
+        <Handle id="s" type="source" :position="Position.Right" />
+        <Handle id="t" type="target" :position="Position.Left" />
     </div>
 </template>
