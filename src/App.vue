@@ -3,36 +3,53 @@ import { markRaw } from 'vue'
 import { VueFlow, useVueFlow } from '@vue-flow/core'
 import { ref } from 'vue';
 import myComp from './components/myComp.vue';
-import BraksComp from './components/BraksComp.vue';
+import myEdge from './components/myEdge.vue';
+// import BraksComp from './components/BraksComp.vue';
 
 const nodeTypes = {
   myCompNode: markRaw(myComp),
-  BraksCompNode: markRaw(BraksComp),
+  // BraksCompNode: markRaw(BraksComp),
 };
 
-const { addEdges } = useVueFlow();
+const edgeTypes = {
+  myEdgeType: markRaw(myEdge)
+};
 
 const elements = ref([
-  { id: 'node 1', type: 'myCompNode', position: { x: 50, y: 50 }},
-  { id: 'node 2', type: 'myCompNode', position: { x: 200, y: 50 }},
+  { id: 'node 1', type: 'myCompNode', active: true, position: { x: 50, y: 50 }},
+  { id: 'node 2', type: 'myCompNode', active: false, position: { x: 200, y: 50 }},
+  { id: 'node 3', type: 'myCompNode', active: false, position: { x: 50, y: 100 }},
 
-  { id: 'e1', source: 'node 1', target: 'node 2', sourceHandle: 's', targetHandle: 't' },
+  // { id: 'e1', source: 'node 1', target: 'node 2', sourceHandle: 's', targetHandle: 't' },
+  { id: 'e1', type: 'myEdgeType', source: 'node 1', target: 'node 2', updatable: true}
 ])
 
-function onConnect(params) {
-  addEdges(params);
-  // console.log("onConnect", params);
-}
+const { onConnect, onEdgeUpdate, addEdges } = useVueFlow();
+onConnect((params) => {
+  addEdges([
+    {
+      ...params,
+      type: 'myEdgeType',
+      updatable: true
+    }
+  ])
+})
+
+onEdgeUpdate((params) => {
+  params.edge.source = params.connection.source
+  params.edge.target = params.connection.target
+})
+
 </script>
 
+<!-- @connect="params => {params.type = 'myEdgeType'; addEdges(params)}" -->
 <template>
   <div style="height: 900px; background: black">
     <VueFlow
       v-model="elements"
       :node-types="nodeTypes"
-      @connect="onConnect"
-    >
-    </VueFlow>
+      :edge-types="edgeTypes"
+    ></VueFlow>
   </div>
 </template>
 

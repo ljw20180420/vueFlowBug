@@ -4,7 +4,7 @@ const { node } = useNode();
 const { addEdges } = useVueFlow();
 const conns = useHandleConnections({
     type: 'source',
-    id: 's',
+    // id: 's',
     onConnect: (params) => {
         console.log("onConnect", params);
     },
@@ -17,7 +17,8 @@ const conns = useHandleConnections({
 <template>
     <div>
         <span>{{ node.id }}</span>
-        <Handle id="s" type="source" :position="Position.Right" />
-        <Handle id="t" type="target" :position="Position.Left" />
+        <Handle type="source" :position="Position.Right" />
+        <Handle type="target" :position="Position.Left" />
+        <input type="checkbox" v-model="node.active">
     </div>
 </template>
