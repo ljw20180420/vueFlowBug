@@ -24,7 +24,7 @@ const elements = ref([
   { id: 'e1', type: 'myEdgeType', source: 'node 1', target: 'node 2', updatable: true}
 ])
 
-const { onConnect, onEdgeUpdate, addEdges } = useVueFlow();
+const { onConnect, addEdges, onEdgeUpdate, updateEdge } = useVueFlow();
 onConnect((params) => {
   addEdges([
     {
@@ -36,8 +36,7 @@ onConnect((params) => {
 })
 
 onEdgeUpdate((params) => {
-  params.edge.source = params.connection.source
-  params.edge.target = params.connection.target
+  updateEdge(params.edge, params.connection)
 })
 
 </script>
