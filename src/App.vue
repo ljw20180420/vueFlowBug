@@ -2,13 +2,11 @@
 import { markRaw } from 'vue'
 import { VueFlow, useVueFlow } from '@vue-flow/core'
 import { ref } from 'vue';
-import myComp from './components/myComp.vue';
+import myNode from './components/myNode.vue';
 import myEdge from './components/myEdge.vue';
-// import BraksComp from './components/BraksComp.vue';
 
 const nodeTypes = {
-  myCompNode: markRaw(myComp),
-  // BraksCompNode: markRaw(BraksComp),
+  myNodeType: markRaw(myNode)
 };
 
 const edgeTypes = {
@@ -16,9 +14,9 @@ const edgeTypes = {
 };
 
 const elements = ref([
-  { id: 'node 1', type: 'myCompNode', active: true, position: { x: 50, y: 50 }},
-  { id: 'node 2', type: 'myCompNode', active: false, position: { x: 200, y: 50 }},
-  { id: 'node 3', type: 'myCompNode', active: false, position: { x: 50, y: 100 }},
+  { id: 'node 1', type: 'myNodeType', active: true, position: { x: 50, y: 50 }},
+  { id: 'node 2', type: 'myNodeType', active: false, position: { x: 200, y: 50 }},
+  { id: 'node 3', type: 'myNodeType', active: false, position: { x: 50, y: 100 }},
 
   // { id: 'e1', source: 'node 1', target: 'node 2', sourceHandle: 's', targetHandle: 't' },
   { id: 'e1', type: 'myEdgeType', source: 'node 1', target: 'node 2', updatable: true}
