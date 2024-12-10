@@ -4,11 +4,18 @@ const { node } = useNode();
 const { addEdges } = useVueFlow();
 const conns = useHandleConnections({
     type: 'source',
-    // id: 's',
-    onConnect: (params) => {
+    id: 's',
+    onConnect: params => {
         console.log("onConnect", params);
+        // addEdges([
+        //     {
+        //         ...params,
+        //         type: 'myEdgeType',
+        //         updatable: true
+        //     }
+        // ])
     },
-    onDisconnect: (params) => {
+    onDisconnect: params => {
         console.log("onDisconnect", params);
     },
 });
@@ -17,8 +24,8 @@ const conns = useHandleConnections({
 <template>
     <div>
         <span>{{ node.id }}</span>
-        <Handle type="source" :position="Position.Right" />
-        <Handle type="target" :position="Position.Left" />
+        <Handle id="s" type="source" :position="Position.Right" />
+        <Handle id="t" type="target" :position="Position.Left" />
         <input type="checkbox" v-model="node.active">
     </div>
 </template>

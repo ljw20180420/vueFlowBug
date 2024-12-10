@@ -14,28 +14,27 @@ const edgeTypes = {
 };
 
 const elements = ref([
-  { id: 'node 1', type: 'myNodeType', active: true, position: { x: 50, y: 50 }},
-  { id: 'node 2', type: 'myNodeType', active: false, position: { x: 200, y: 50 }},
-  { id: 'node 3', type: 'myNodeType', active: false, position: { x: 50, y: 100 }},
+  { id: 'node 1', type: 'myNodeType', active: true, position: { x: 50, y: 50 }, connectable: true },
+  { id: 'node 2', type: 'myNodeType', active: false, position: { x: 200, y: 50 }, connectable: true },
+  // { id: 'node 3', type: 'myNodeType', active: false, position: { x: 50, y: 100 }, connectable: true },
 
-  // { id: 'e1', source: 'node 1', target: 'node 2', sourceHandle: 's', targetHandle: 't' },
-  { id: 'e1', type: 'myEdgeType', source: 'node 1', target: 'node 2', updatable: true}
+  { id: 'e1', type: 'myEdgeType', source: 'node 1', target: 'node 2', sourceHandle: 's', targetHandle: 't' }
 ])
 
-const { onConnect, addEdges, onEdgeUpdate, updateEdge } = useVueFlow();
-onConnect((params) => {
-  addEdges([
-    {
-      ...params,
-      type: 'myEdgeType',
-      updatable: true
-    }
-  ])
-})
+// const { onConnect, addEdges, onEdgeUpdate, updateEdge } = useVueFlow();
+// onConnect((params) => {
+//   addEdges([
+//     {
+//       ...params,
+//       type: 'myEdgeType',
+//       updatable: true
+//     }
+//   ])
+// })
 
-onEdgeUpdate((params) => {
-  updateEdge(params.edge, params.connection)
-})
+// onEdgeUpdate((params) => {
+//   updateEdge(params.edge, params.connection)
+// })
 
 </script>
 
